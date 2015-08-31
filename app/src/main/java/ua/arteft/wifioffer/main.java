@@ -21,7 +21,7 @@ public class main extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-
+//made buttons
         btnStart = (Button)findViewById(R.id.btnStart);
         btnStop = (Button) findViewById(R.id.btnStop);
 
