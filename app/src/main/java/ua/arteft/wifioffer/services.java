@@ -11,6 +11,8 @@ import android.content.*;
 public class services extends Service {
 
     private WifiManager manager;
+    
+    
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -32,10 +34,10 @@ public class services extends Service {
 
         return null;
     }
+    
     public void onCreate() {
         super.onCreate();
         this.registerReceiver(this.receiver, new IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION));
-        wifioff();
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -47,7 +49,8 @@ public class services extends Service {
         unregisterReceiver(this.receiver);
 
     }
-
+    
+    //add wifi receiver, and set wifi turn off
     void wifioff() {
         manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         manager.setWifiEnabled(false);
