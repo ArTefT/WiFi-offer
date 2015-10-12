@@ -17,6 +17,7 @@ public class services extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             int state = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, WifiManager.WIFI_STATE_UNKNOWN);
+          //если Wi-Fi включен или включается - выключить его, остальные статусы нам не интересны
           switch (state){
                 case WifiManager.WIFI_STATE_ENABLING:
                     wifioff();
@@ -34,7 +35,7 @@ public class services extends Service {
 
         return null;
     }
-    
+    // при создании запускаем слушатель статуса WiFi
     public void onCreate() {
         super.onCreate();
         this.registerReceiver(this.receiver, new IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION));
@@ -50,7 +51,7 @@ public class services extends Service {
 
     }
     
-    //add wifi receiver, and set wifi turn off
+    //выключаем Wi-Fi
     void wifioff() {
         manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         manager.setWifiEnabled(false);
